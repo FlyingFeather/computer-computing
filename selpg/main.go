@@ -169,7 +169,7 @@ func process_input(sa selpg_args) {
 
 	/* set the input source */
 	if sa.in_filename == "" {
-		fmt.Printf("START\n")
+		// fmt.Printf("START\n")
 		fioRea = bufio.NewReader(os.Stdin)
 	} else {
 		file, err = os.Open(sa.in_filename)

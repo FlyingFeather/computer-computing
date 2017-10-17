@@ -1,0 +1,11 @@
+
+USAGE: ./selpg -sstart_page -eend_page [ -f | -llines_per_page ] [ -ddest ] [ in_filename ]
+panic: ./selpg: invalid end page 200
+
+
+goroutine 1 [running]:
+main.process_args(0x4, 0xc42000e080, 0x4, 0x4, 0xc420047f28)
+	/home/xieyzh/homework/service-computing/selpg/main.go:98 +0xa2b
+main.main()
+	/home/xieyzh/homework/service-computing/selpg/main.go:40 +0xdd
+
