@@ -1,0 +1,2 @@
+
+USAGE: ./selpg -sstart_page -eend_page [ -f | -llines_per_page ] [ -ddest ] [ in_filename ]

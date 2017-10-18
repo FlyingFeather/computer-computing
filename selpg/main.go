@@ -63,23 +63,23 @@ func process_args(ac int, av []string, psa *selpg_args) {
 	/* check the command-line arguments for validity */
 	if ac < 3 { /* Not enough args, minimum command is "selpg -sstartpage -eend_page"  */
 		message = message + "not enough arguments\n"
-		panic(message)
 		usage()
+		panic(message)
 	}
 
 	/* handle mandatory args first */
 	s1 = av[1] /* !!! PBO */
 	if !strings.HasPrefix(s1, "-s") {
 		message = message + "1st arg should be -sstart_page\n"
-		panic(message)
 		usage()
+		panic(message)
 	}
 	i, err := strconv.Atoi(s1[2:len(s1)])
 	_ = err
 	if err != nil || i < 1 || i > intmaxplus1 {
 		message = message + "invalid start page " + s1[2:len(s1)] + "\n"
-		panic(message)
 		usage()
+		panic(message)
 	}
 	(*psa).start_page = i
 
@@ -87,8 +87,8 @@ func process_args(ac int, av []string, psa *selpg_args) {
 	s1 = av[2] /* !!! PBO */
 	if !strings.HasPrefix(s1, "-e") {
 		message = message + "2nd arg should be -eend_page\n"
-		panic(message)
 		usage()
+		panic(message)
 	}
 	i, err = strconv.Atoi(s1[2:len(s1)])
 	_ = err
@@ -108,9 +108,9 @@ func process_args(ac int, av []string, psa *selpg_args) {
 			s2 = s1[2:len(s1)]
 			i, err = strconv.Atoi(s2)
 			if err != nil || i < 1 || i > intmaxplus1 {
+				usage()
 				message = message + "invalid page length " + s2 + "\n"
 				panic(message)
-				usage()
 			}
 			(*psa).page_len = i
 			argno = argno + 1
@@ -118,9 +118,9 @@ func process_args(ac int, av []string, psa *selpg_args) {
 
 		case 'f':
 			if !strings.HasPrefix(s1, "-f") {
+				usage()
 				message = message + "option should be \"-f\"\n"
 				panic(message)
-				usage()
 			}
 			(*psa).page_type = "f"
 			argno = argno + 1
@@ -129,9 +129,9 @@ func process_args(ac int, av []string, psa *selpg_args) {
 		case 'd':
 			s2 = s1[2:len(s1)]
 			if len(s2) < 1 {
+				usage()
 				message = message + "-d option requires a printer destination\n"
 				panic(message)
-				usage()
 			}
 			(*psa).print_dest = s2
 			argno = argno + 1
@@ -174,9 +174,9 @@ func process_input(sa selpg_args) {
 	} else {
 		file, err = os.Open(sa.in_filename)
 		if err != nil {
+			usage()
 			message = message + "could not open input file \"" + sa.in_filename + "\"\n"
 			panic(message)
-			usage()
 		}
 		fioRea = bufio.NewReader(file)
 	}
