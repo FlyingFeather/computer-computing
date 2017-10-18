@@ -9,6 +9,8 @@
 3. golang stdin 读，参考这里
 4. 应用程序只能修改自己的环境变量，不能修改父程序的环境变量
 
+main.go为程序代码。
+
 ## 参数介绍
 1. -s : 指定打印的起始页码
 2. -e ：指定打印的结束页码
@@ -21,12 +23,14 @@
 
 ## 说明
 参考下面的c语言程序，学习go语言。
+
 [c语言程序链接](https://www.ibm.com/developerworks/cn/linux/shell/clutil/selpg.c)
 
 ## 使用与测试结果
  1. ./selpg -s1 -e1 file1
 
 该命令将把“input_file”的第 1 页写至标准输出（也就是屏幕），因为这里没有重定向或管道。由于没有指定行号，默认一页72行。
+
 ![](https://github.com/FlyingFeather/service-computing/blob/master/selpg/screenshot/1.png)
 ![](https://github.com/FlyingFeather/service-computing/blob/master/selpg/screenshot/2.png)
 
@@ -96,10 +100,6 @@ selpg 将第1页到第2页写至标准输出，标准输出被重定向至“out
 > panic: ./selpg: invalid start page -3
 
 
-- ./selpg -s-2 -e-1 -l3
-
-> panic: ./selpg: invalid start page -2
-
 - ./selpg -s1 -e1 -l3 "no"
 
 USAGE: ./selpg -sstart_page -eend_page [ -f | -llines_per_page ] [ -ddest ] [ in_filename ]
@@ -109,20 +109,6 @@ panic: ./selpg: input file "no" does not exist
 - ./selpg -s1 -e2 -l3 < file1
 ![](https://github.com/FlyingFeather/service-computing/blob/master/selpg/screenshot/3.png)
 
-> the first file-1
-the first file-2
-the first file-3
-the first file-4
-the first file-5
-the first file-6
-
-
-
-> the first file-1
-the first file-2
-the first file-3
-...
-the first file-100
 
 
 - $ selpg -s10 -e20 input_file >output_file 2>/dev/null 
